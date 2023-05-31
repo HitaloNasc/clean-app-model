@@ -14,10 +14,10 @@ type HttpResponse = {
 class LoginRouter {
   public route(httpRequest: HttpRequest): HttpResponse {
     if (!httpRequest.body.email) {
-      return { statusCode: 400 };
+      return { statusCode: 400 }
     }
 
-    return { statusCode: 200 };
+    return { statusCode: 200 }
   }
 }
 

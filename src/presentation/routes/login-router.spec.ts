@@ -13,11 +13,9 @@ type HttpResponse = {
 
 class LoginRouter {
     public route(httpRequest: HttpRequest): HttpResponse {
-        if (!httpRequest.body.email) {
-            return { statusCode: 400 };
-        }
+        const { email, password } = httpRequest.body;
 
-        if (!httpRequest.body.password) {
+        if (!email || !password) {
             return { statusCode: 400 };
         }
 

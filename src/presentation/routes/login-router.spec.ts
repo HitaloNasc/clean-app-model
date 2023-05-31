@@ -7,23 +7,38 @@ type HttpRequest = {
     body: LoginRequest;
 };
 
-type HttpResponse = {
-    statusCode: number;
-};
+class HttpResponse {
+    static badRequest() {
+        return {
+            statusCode: 400,
+        };
+    }
+
+    static serverError() {
+        return {
+            statusCode: 500,
+        };
+    }
+
+    static ok() {
+        return {
+            statusCode: 200,
+        };
+    }
+}
 
 class LoginRouter {
-    public route(httpRequest: HttpRequest): HttpResponse {
+    public route(httpRequest: HttpRequest) {
         if (!httpRequest || !httpRequest.body) {
-            return { statusCode: 500 };
+            return HttpResponse.serverError();
         }
 
         const { email, password } = httpRequest.body;
-
         if (!email || !password) {
-            return { statusCode: 400 };
+            return HttpResponse.badRequest();
         }
 
-        return { statusCode: 200 };
+        return HttpResponse.ok();
     }
 }
 

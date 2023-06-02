@@ -4,8 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest",
-        "test:watch": "jest --watchAll"
+        "test": "dotenv -e .env.test -- jest",
+        "test:watch": "dotenv -e .env.test -- jest --watchAll",
+        "test:up": "docker-compose -f docker-compose.test.yml up -d",
+        "test:down": "docker-compose -f docker-compose.test.yml down",
+        "test:prisma:push": "dotenv -e .env.test -- prisma db push"
     },
     "repository": {
         "type": "git",
@@ -35,6 +38,7 @@
     "dependencies": {
         "@prisma/client": "^4.15.0",
         "bcrypt": "^5.1.0",
+        "dotenv-cli": "^7.2.1",
         "prisma": "^4.15.0"
     }
 }

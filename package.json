@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start:dev": "dotenv -e .env.development -- tsx watch src/main/server.ts",
         "test": "npm run test:up && dotenv -e .env.test -- jest",
         "test:unit": "npm test -- --testMatch '**/*.spec.ts' --watchAll",
         "test:integration": "npm test -- --testMatch '**/*.test.ts' --watchAll",
@@ -38,6 +39,7 @@
         "supertest": "^6.3.3",
         "ts-jest": "^29.1.0",
         "ts-node": "^10.9.1",
+        "tsx": "^3.12.7",
         "typescript": "^5.0.4"
     },
     "dependencies": {

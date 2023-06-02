@@ -2,7 +2,7 @@ import { IRegisterUser } from './register-user-interface';
 import { IUserRepository } from '../ports';
 import { IUser } from '@/entities/user';
 import { User } from '@/entities/user/user';
-import { UserAlreadyExistsError } from '../errors/user-already-exists';
+import { UserAlreadyExistsError } from '../errors';
 
 export class RegisterUser implements IRegisterUser {
     private readonly repository: IUserRepository;

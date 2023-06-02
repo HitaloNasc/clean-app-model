@@ -1,5 +1,5 @@
 import { hash, compare } from 'bcrypt';
-import { UserParams } from './user-params';
+import { IUser } from './user-interface';
 import { InvalidEmailError, InvalidNameError, InvalidPasswordError } from './errors';
 
 export class User {
@@ -84,8 +84,8 @@ export class User {
         return await hash(password, 10);
     }
 
-    static async create(userParams: UserParams): Promise<User> {
-        const { name, email, password } = userParams;
+    static async create(IUser: IUser): Promise<User> {
+        const { name, email, password } = IUser;
 
         User.validateName(name);
         User.validateEmail(email);

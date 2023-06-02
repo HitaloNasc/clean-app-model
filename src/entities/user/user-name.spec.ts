@@ -1,7 +1,7 @@
 import { User } from './user';
 import { InvalidNameError } from './errors';
 
-describe('User Name', () => {
+describe('User entity - name', () => {
     it('should not accept empty name', async () => {
         const sut = {
             name: '',

@@ -1,7 +1,7 @@
 import { User } from './user';
 import { InvalidPasswordError } from './errors';
 
-describe('User password', () => {
+describe('User entity - password', () => {
     it('should not accept empty password', async () => {
         const sut = {
             name: 'anyname',

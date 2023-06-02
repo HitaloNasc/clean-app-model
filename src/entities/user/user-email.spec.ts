@@ -1,7 +1,7 @@
 import { User } from './user';
 import { InvalidEmailError } from './errors';
 
-describe('User email', () => {
+describe('User entity - email', () => {
     it('should not accept empty email', async () => {
         const sut = {
             name: 'anyname',

@@ -1,4 +1,6 @@
-export default {
+import type { Config } from 'jest';
+
+const config: Config = {
     roots: ['<rootDir>/src'],
     testEnvironment: 'node',
     transform: {
@@ -10,4 +12,7 @@ export default {
     collectCoverage: true,
     coverageDirectory: 'coverage',
     coverageProvider: 'v8',
+    setupFiles: ['dotenv/config'],
 };
+
+export default config;

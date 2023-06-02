@@ -1,4 +1,4 @@
-import { IUser } from '@/entities/user';
+import { IUser } from '@/domain/entities/user';
 import { IUserRepository } from '@/usecases/ports';
 
 export class InMemoryUserRepository implements IUserRepository {

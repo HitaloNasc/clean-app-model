@@ -1,7 +1,7 @@
 import { IRegisterUser } from './register-user-interface';
 import { IUserRepository } from '../ports';
-import { IUser } from '@/entities/user';
-import { User } from '@/entities/user/user';
+import { IUser } from '@/domain/entities/user';
+import { User } from '@/domain/entities/user/user';
 import { UserAlreadyExistsError } from '../errors';
 
 export class RegisterUser implements IRegisterUser {

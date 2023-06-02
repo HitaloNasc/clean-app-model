@@ -1,4 +1,4 @@
-import { IUser } from '@/entities/user';
+import { IUser } from '@/domain/entities/user';
 
 export interface IUserRepository {
     create: (user: IUser) => Promise<void>;

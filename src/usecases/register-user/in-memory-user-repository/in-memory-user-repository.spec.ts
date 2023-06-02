@@ -1,4 +1,4 @@
-import { IUser } from '@/entities/user';
+import { IUser } from '@/domain/entities/user';
 import { InMemoryUserRepository } from './in-memory-user-repository';
 
 const users: IUser[] = [{ name: 'any_name', email: 'existingemail@mail.com', password: 'any_password' }];

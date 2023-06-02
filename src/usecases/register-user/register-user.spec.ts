@@ -1,6 +1,6 @@
 import { RegisterUser } from './register-user';
 import { InMemoryUserRepository } from './in-memory-user-repository';
-import { IUser } from '@/entities/user';
+import { IUser } from '@/domain/entities/user';
 import { UserAlreadyExistsError } from '../errors';
 
 const users: IUser[] = [{ name: 'any_name', email: 'existingemail@mail.com', password: 'any_password' }];

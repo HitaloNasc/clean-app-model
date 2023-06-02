@@ -1,16 +1,23 @@
 import { hash, compare } from 'bcrypt';
 import { IUser } from './user-interface';
 import { InvalidEmailError, InvalidNameError, InvalidPasswordError } from '../../errors';
+import { STATUS } from './consts';
 
 export class User {
     public readonly name: string;
     public readonly email: string;
     public readonly password: string;
+    public readonly status: number;
+    public readonly created_at: Date;
+    public readonly updated_at: Date;
 
     private constructor(name: string, email: string, password: string) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.status = STATUS.ACTIVE;
+        this.created_at = new Date();
+        this.updated_at = new Date();
     }
 
     static validateName(name: string): void {

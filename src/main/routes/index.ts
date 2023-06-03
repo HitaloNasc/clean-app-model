@@ -7,7 +7,6 @@ const routes = (app: Express) => {
 
     let files = fs.readdirSync(rootPath);
     files = files.filter(file => file.split('.')[1] === 'routes');
-
     files.forEach(file => {
         const pathFile = Path.resolve(rootPath, file);
         const { path, router } = require(pathFile);

@@ -1,11 +1,14 @@
 import { User } from './user';
 import { InvalidPasswordError } from '../../errors';
 
+const name = 'anyname';
+const email = 'anyemail@mail.com';
+
 describe('User entity - password', () => {
     it('should not accept empty password', async () => {
         const sut = {
-            name: 'anyname',
-            email: 'anyemail@mail.com',
+            name,
+            email,
             password: '',
         };
 
@@ -20,8 +23,8 @@ describe('User entity - password', () => {
 
     it('should not accept more than 64 characters in password', async () => {
         const sut = {
-            name: 'anyname',
-            email: 'anyemail@mail.com',
+            name,
+            email,
             password: 'c'.repeat(65),
         };
 
@@ -36,8 +39,8 @@ describe('User entity - password', () => {
 
     it('should not accept less than 8 characters in password', async () => {
         const sut = {
-            name: 'anyname',
-            email: 'anyemail@mail.com',
+            name,
+            email,
             password: 'c',
         };
 
@@ -52,8 +55,8 @@ describe('User entity - password', () => {
 
     it('should not accept a password without uppercase letters', async () => {
         const sut = {
-            name: 'anyname',
-            email: 'anyemail@mail.com',
+            name,
+            email,
             password: 'aaaa1234@$',
         };
 
@@ -68,8 +71,8 @@ describe('User entity - password', () => {
 
     it('should not accept a password without lowercase letters', async () => {
         const sut = {
-            name: 'anyname',
-            email: 'anyemail@mail.com',
+            name,
+            email,
             password: 'AAAA1234@$',
         };
 
@@ -84,8 +87,8 @@ describe('User entity - password', () => {
 
     it('should not accept a password without numbers', async () => {
         const sut = {
-            name: 'anyname',
-            email: 'anyemail@mail.com',
+            name,
+            email,
             password: 'AAAAaaaa@$',
         };
 
@@ -100,8 +103,8 @@ describe('User entity - password', () => {
 
     it('should not accept a password without special characters', async () => {
         const sut = {
-            name: 'anyname',
-            email: 'anyemail@mail.com',
+            name,
+            email,
             password: 'AAAAaaaa12',
         };
 
@@ -116,8 +119,8 @@ describe('User entity - password', () => {
 
     it('should accept a password', async () => {
         const sut = {
-            name: 'anyname',
-            email: 'anyemail@mail.com',
+            name,
+            email,
             password: 'AAAAaaaa1234@$',
         };
 

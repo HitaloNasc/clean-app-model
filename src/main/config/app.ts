@@ -7,10 +7,9 @@ const app = express();
 
 app.use(bodyParser);
 app.use(contentType);
-app.use(notFoundHandler);
 app.use(express.json());
 app.use(cors());
-
 routes(app);
+app.use(notFoundHandler);
 
 export default app;

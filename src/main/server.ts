@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import app from './config/app';
-// import { Logger } from './common/lib/logger';
+import { Logger } from '@/main/helpers';
 
 const PORT = parseInt(process.env.SERVER_PORT!) || 5555;
 
@@ -9,5 +9,5 @@ process.on('SIGTERM', () => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    Logger.initial(`Server is running on port ${PORT}`);
 });

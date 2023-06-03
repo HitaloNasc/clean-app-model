@@ -10,7 +10,7 @@ describe('RgisterUser usecase', () => {
         const userData = {
             name: 'any_name',
             email: 'existingemail@mail.com',
-            password: 'AAaa12@$',
+            password: 'AAaaa1234@$',
         };
 
         const repository = new InMemoryUserRepository(users);

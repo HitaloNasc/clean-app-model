@@ -1,5 +1,6 @@
 import { hash, compare } from 'bcrypt';
 import { IUser } from './user-interface';
+import { validateName, validateEmail, validatePassword } from '@/domain/helpers';
 import { InvalidEmailError, InvalidNameError, InvalidPasswordError } from '../../errors';
 import { STATUS } from './consts';
 
@@ -20,69 +21,6 @@ export class User {
         this.updated_at = new Date();
     }
 
-    static validateName(name: string): void {
-        if (!name || name.trim().length < 2 || name.trim().length > 255) {
-            throw new InvalidNameError(name);
-        }
-    }
-
-    static validateEmail(email: string): void {
-        const tester = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email) {
-            throw new InvalidEmailError(email);
-        }
-        if (email.length > 256) {
-            throw new InvalidEmailError(email);
-        }
-        if (!tester.test(email)) {
-            throw new InvalidEmailError(email);
-        }
-        const [account, address] = email.split('@');
-        if (account.length > 64) {
-            throw new InvalidEmailError(email);
-        }
-
-        const firstCharDomain = address[0];
-        if (firstCharDomain === '.') {
-            throw new InvalidEmailError(email);
-        }
-
-        const domainParts = address.split('.');
-        if (
-            domainParts.some(function (part) {
-                return part.length > 63;
-            })
-        ) {
-            throw new InvalidEmailError(email);
-        }
-    }
-
-    static validatePassword(password: string): void {
-        if (password.length < 8) {
-            throw new InvalidPasswordError();
-        }
-
-        if (password.length > 64) {
-            throw new InvalidPasswordError();
-        }
-
-        if (!/[A-Z]/.test(password)) {
-            throw new InvalidPasswordError();
-        }
-
-        if (!/[a-z]/.test(password)) {
-            throw new InvalidPasswordError();
-        }
-
-        if (!/[0-9]/.test(password)) {
-            throw new InvalidPasswordError();
-        }
-
-        if (!/[!@#$%^&*]/.test(password)) {
-            throw new InvalidPasswordError();
-        }
-    }
-
     static async compareHashedPassword(password: string, hashPassword: string): Promise<boolean> {
         return await compare(password, hashPassword);
     }
@@ -94,9 +32,17 @@ export class User {
     static async create(IUser: IUser): Promise<User> {
         const { name, email, password } = IUser;
 
-        User.validateName(name);
-        User.validateEmail(email);
-        User.validatePassword(password);
+        if (!validateName(name)) {
+            throw new InvalidNameError(name);
+        }
+
+        if (!validateEmail(email)) {
+            throw new InvalidEmailError(email);
+        }
+
+        if (!validatePassword(password)) {
+            throw new InvalidPasswordError();
+        }
 
         const hashedPassword = await User.hashPassword(password);
 

@@ -1,9 +1,11 @@
 import { HttpRequest, HttpResponse } from '@/presentation/ports';
+import { IController } from '@/presentation/helpers';
 import { ok, badRequest } from '@/presentation/helpers';
 import { MissingParamError, PasswordAndConfirmPasswordAreDiferentError } from '@/presentation/errors';
 import { IRegisterUser } from '@/usecases/register-user';
+import { Logger } from '@/main/helpers';
 
-export class RegisterUserController {
+export class RegisterUserController implements IController {
     private readonly registerUser: IRegisterUser;
 
     constructor(resgisterUser: IRegisterUser) {
@@ -12,6 +14,11 @@ export class RegisterUserController {
 
     private validate(httpRequest: HttpRequest): HttpResponse | undefined {
         const { body } = httpRequest;
+
+        if (!body) {
+            return badRequest(new MissingParamError('body'));
+        }
+
         if (!body.name) {
             return badRequest(new MissingParamError('name'));
         }
@@ -34,6 +41,9 @@ export class RegisterUserController {
     }
 
     public async execute(httpRequest: HttpRequest): Promise<HttpResponse> {
+        Logger.log('controllers - registerUserController - execute');
+        Logger.dir({ httpRequest });
+
         const validation = this.validate(httpRequest);
 
         if (validation) {

@@ -17,7 +17,9 @@ describe('Register User Controller', () => {
                 email: '',
             },
         };
+
         const httpResponse = await sut.execute(httpRequest);
+
         expect(httpResponse.statusCode).toBe(400);
         expect(httpResponse.body).toEqual(new MissingParamError('name').message);
     });

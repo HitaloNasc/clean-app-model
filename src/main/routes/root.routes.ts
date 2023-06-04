@@ -6,7 +6,7 @@ const path = '/';
 
 router.get('/', (request: Request, response: Response) => {
     Logger.log('route - root - get');
-    response.send('The server is running');
+    response.status(200).json({ statusCode: 200, message: 'The server is running' });
 });
 
 router.post('/', (request: Request, response: Response) => {

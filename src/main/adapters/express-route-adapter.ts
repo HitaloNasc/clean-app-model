@@ -1,5 +1,6 @@
 import { IController } from '@/presentation/helpers';
 import { Request, Response } from 'express';
+import { handler } from '../helpers';
 
 export const adaptRoute = (controller: IController) => {
     return async (req: Request, res: Response) => {
@@ -7,14 +8,7 @@ export const adaptRoute = (controller: IController) => {
             body: req.body || {},
             params: req.params || {},
         };
-
-        const httpResponse = await controller.execute(request);
-        if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
-            res.status(httpResponse.statusCode).json(httpResponse.body);
-        } else {
-            res.status(httpResponse.statusCode).json({
-                error: httpResponse.body.message,
-            });
-        }
+        const promise = controller.execute(request);
+        await handler.json(res, promise);
     };
 };

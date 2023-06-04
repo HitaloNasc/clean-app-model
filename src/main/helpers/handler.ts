@@ -1,6 +1,7 @@
+/* istanbul ignore file */
 import { Response } from 'express';
 import { Logger } from './logger';
-import { serverError } from '@/presentation/helpers';
+import { Errors } from '@/common';
 
 class Handler {
     private global = (response: Response, statusCode: number, message: any) => {
@@ -12,7 +13,7 @@ class Handler {
         Logger.log('lib - handler - handlerError');
 
         if (!error) {
-            Logger.dir(serverError());
+            Logger.dir(Errors.INTERNAL_SERVER_ERROR());
         }
 
         Logger.log('Error handler:');

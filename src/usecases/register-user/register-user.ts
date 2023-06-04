@@ -2,7 +2,7 @@ import { IRegisterUser } from './register-user-interface';
 import { IUserRepository } from '../ports';
 import { IUser } from '@/domain/entities/user';
 import { User } from '@/domain/entities/user/user';
-import { UserAlreadyExistsError } from '../errors';
+import { Errors } from '@/common';
 
 export class RegisterUser implements IRegisterUser {
     private readonly repository: IUserRepository;
@@ -14,7 +14,7 @@ export class RegisterUser implements IRegisterUser {
     private async validate(user: IUser): Promise<void> {
         const userAlreadyExists = await this.repository.findByEmail(user.email);
         if (userAlreadyExists) {
-            throw new UserAlreadyExistsError(user.email);
+            throw Errors.PRECONDITION_FAILED([{ key: 'user_already_exists', data: { email: user.email } }]);
         }
     }
 

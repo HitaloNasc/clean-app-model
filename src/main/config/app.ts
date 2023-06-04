@@ -1,5 +1,5 @@
 import express from 'express';
-import { bodyParser, contentType, notFoundHandler } from '../middleware';
+import { bodyParser, contentType, notFoundHandler, handlerError } from '../middleware';
 import cors from 'cors';
 import routes from '../routes';
 
@@ -11,5 +11,6 @@ app.use(express.json());
 app.use(cors());
 routes(app);
 app.use(notFoundHandler);
+app.use(handlerError);
 
 export default app;

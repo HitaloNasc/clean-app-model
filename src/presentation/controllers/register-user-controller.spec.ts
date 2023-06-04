@@ -1,14 +1,25 @@
 import { RegisterUserController } from './register-user-controller';
 import { RegisterUser } from '@/usecases/register-user';
 import { InMemoryUserRepository } from '@/usecases/register-user/in-memory-user-repository';
-import { MissingParamError, PasswordAndConfirmPasswordAreDiferentError } from '@/presentation/errors';
-import { InvalidEmailError } from '@/domain/errors';
 
 const inMemoryUserRepository = new InMemoryUserRepository([]);
 const registerUser = new RegisterUser(inMemoryUserRepository);
 const sut = new RegisterUserController(registerUser);
 
 describe('Register User Controller', () => {
+    it('Should not register a new user with a invalid body', async () => {
+        const httpRequest = {};
+
+        expect.assertions(1);
+
+        try {
+            //@ts-expect-error test invalid body
+            await sut.execute(httpRequest);
+        } catch (error: any) {
+            expect(error.statusCode).toBe(412);
+        }
+    });
+
     it('Should return 400 if no name is provided', async () => {
         const httpRequest = {
             body: {
@@ -18,10 +29,13 @@ describe('Register User Controller', () => {
             },
         };
 
-        const httpResponse = await sut.execute(httpRequest);
+        expect.assertions(1);
 
-        expect(httpResponse.statusCode).toBe(400);
-        expect(httpResponse.body).toEqual(new MissingParamError('name').message);
+        try {
+            await sut.execute(httpRequest);
+        } catch (error: any) {
+            expect(error.statusCode).toBe(412);
+        }
     });
 
     it('Should return 400 if no email is provided', async () => {
@@ -32,9 +46,14 @@ describe('Register User Controller', () => {
                 confirmPassword: 'any_password',
             },
         };
-        const httpResponse = await sut.execute(httpRequest);
-        expect(httpResponse.statusCode).toBe(400);
-        expect(httpResponse.body).toEqual(new MissingParamError('email').message);
+
+        expect.assertions(1);
+
+        try {
+            await sut.execute(httpRequest);
+        } catch (error: any) {
+            expect(error.statusCode).toBe(412);
+        }
     });
 
     it('Should return 400 if no password is provided', async () => {
@@ -45,9 +64,14 @@ describe('Register User Controller', () => {
                 confirmPassword: 'any_password',
             },
         };
-        const httpResponse = await sut.execute(httpRequest);
-        expect(httpResponse.statusCode).toBe(400);
-        expect(httpResponse.body).toEqual(new MissingParamError('password').message);
+
+        expect.assertions(1);
+
+        try {
+            await sut.execute(httpRequest);
+        } catch (error: any) {
+            expect(error.statusCode).toBe(412);
+        }
     });
 
     it('Should return 400 if no confirmPassword is provided', async () => {
@@ -58,9 +82,14 @@ describe('Register User Controller', () => {
                 password: 'any_password',
             },
         };
-        const httpResponse = await sut.execute(httpRequest);
-        expect(httpResponse.statusCode).toBe(400);
-        expect(httpResponse.body).toEqual(new MissingParamError('confirmPassword').message);
+
+        expect.assertions(1);
+
+        try {
+            await sut.execute(httpRequest);
+        } catch (error: any) {
+            expect(error.statusCode).toBe(412);
+        }
     });
 
     it('Should return 400 if password and confirmPassword are different', async () => {
@@ -72,9 +101,14 @@ describe('Register User Controller', () => {
                 confirmPassword: 'anypassword',
             },
         };
-        const httpResponse = await sut.execute(httpRequest);
-        expect(httpResponse.statusCode).toBe(400);
-        expect(httpResponse.body).toEqual(new PasswordAndConfirmPasswordAreDiferentError().message);
+
+        expect.assertions(1);
+
+        try {
+            await sut.execute(httpRequest);
+        } catch (error: any) {
+            expect(error.statusCode).toBe(412);
+        }
     });
 
     it('Should not create a new user if email is invalid', async () => {
@@ -92,7 +126,7 @@ describe('Register User Controller', () => {
         try {
             await sut.execute(httpRequest);
         } catch (error) {
-            expect(error).toBeInstanceOf(InvalidEmailError);
+            expect(error).toBeInstanceOf(Error);
         }
     });
 

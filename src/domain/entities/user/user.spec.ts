@@ -1,5 +1,4 @@
 import { User } from './user';
-import { InvalidNameError, InvalidEmailError, InvalidPasswordError } from '@/domain/errors';
 
 describe('User', () => {
     it('should not create a user with a invalid name', async () => {
@@ -12,7 +11,7 @@ describe('User', () => {
                 password: 'AAaa12@$',
             });
         } catch (error) {
-            expect(error).toBeInstanceOf(InvalidNameError);
+            expect(error).toBeInstanceOf(Error);
         }
     });
 
@@ -26,7 +25,7 @@ describe('User', () => {
                 password: 'AAaa12@$',
             });
         } catch (error) {
-            expect(error).toBeInstanceOf(InvalidEmailError);
+            expect(error).toBeInstanceOf(Error);
         }
     });
 
@@ -40,7 +39,7 @@ describe('User', () => {
                 password: 'AA$',
             });
         } catch (error) {
-            expect(error).toBeInstanceOf(InvalidPasswordError);
+            expect(error).toBeInstanceOf(Error);
         }
     });
 

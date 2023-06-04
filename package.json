@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start:dev": "dotenv -e .env.development -- tsx watch src/main/server.ts",
+        "dev:prisma:push": "dotenv -e .env.development -- prisma db push",
         "test": "npm run test:up && dotenv -e .env.test -- jest --passWithNoTests --silent --noStackTrace --runInBand",
         "test:unit": "npm test -- --testMatch '**/*.spec.ts' --watchAll",
         "test:integration": "npm test -- --testMatch '**/*.test.ts' --watchAll",

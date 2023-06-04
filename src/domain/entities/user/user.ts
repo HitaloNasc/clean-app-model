@@ -1,7 +1,7 @@
 import { hash, compare } from 'bcrypt';
 import { IUser } from './user-interface';
 import { validateName, validateEmail, validatePassword } from '@/domain/helpers';
-import { InvalidEmailError, InvalidNameError, InvalidPasswordError } from '../../errors';
+import { Errors } from '@/common';
 import { STATUS } from './consts';
 
 export class User {
@@ -21,7 +21,10 @@ export class User {
         this.updated_at = new Date();
     }
 
-    static async compareHashedPassword(password: string, hashPassword: string): Promise<boolean> {
+    static async compareHashedPassword(password: string, hashPassword: string | undefined): Promise<boolean> {
+        if (!password || !hashPassword) {
+            return false;
+        }
         return await compare(password, hashPassword);
     }
 
@@ -33,15 +36,15 @@ export class User {
         const { name, email, password } = IUser;
 
         if (!validateName(name)) {
-            throw new InvalidNameError(name);
+            throw Errors.PRECONDITION_FAILED([{ key: 'invalid_name', data: { name } }]);
         }
 
         if (!validateEmail(email)) {
-            throw new InvalidEmailError(email);
+            throw Errors.PRECONDITION_FAILED([{ key: 'invalid_email', data: { email } }]);
         }
 
         if (!validatePassword(password)) {
-            throw new InvalidPasswordError();
+            throw Errors.PRECONDITION_FAILED([{ key: 'invalid_password' }]);
         }
 
         const hashedPassword = await User.hashPassword(password);

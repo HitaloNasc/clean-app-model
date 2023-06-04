@@ -1,7 +1,6 @@
 import { RegisterUser } from './register-user';
 import { InMemoryUserRepository } from './in-memory-user-repository';
 import { IUser } from '@/domain/entities/user';
-import { UserAlreadyExistsError } from '../errors';
 
 const users: IUser[] = [{ name: 'any_name', email: 'existingemail@mail.com', password: 'any_password' }];
 
@@ -20,8 +19,8 @@ describe('RgisterUser usecase', () => {
 
         try {
             await sut.execute(userData);
-        } catch (error) {
-            expect(error).toBeInstanceOf(UserAlreadyExistsError);
+        } catch (error: any) {
+            expect(error.statusCode).toBe(412);
         }
     });
 

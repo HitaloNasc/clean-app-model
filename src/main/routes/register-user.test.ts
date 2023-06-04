@@ -7,7 +7,7 @@ import { PrismaUserRepository } from '@/external/repositories/prisma';
 import { HttpResponse } from '@/presentation/ports';
 
 const registerUser = async (user: IUser): Promise<HttpResponse> => {
-    return await request(app).post('/user').send(user);
+    return await request(app).post('/user/register').send(user);
 };
 
 describe('Register User Routes', () => {

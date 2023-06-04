@@ -7,7 +7,7 @@ describe('Not Found Middleware', () => {
             res.send('');
         });
         const response = await request(app).get('/test_content_type');
-        
+
         expect(response.status).toBe(404);
     });
 });

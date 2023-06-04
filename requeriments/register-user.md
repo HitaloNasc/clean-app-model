@@ -4,9 +4,9 @@
 
 ## Story
 
-Como um potencial usuário do sistema,
-Eu quero ser capaz de me registrar como um novo usuário,
-Para que eu possa acessar os recursos e funcionalidades do sistema.
+**Como** um potencial usuário do sistema,
+**Eu quero** ser capaz de me registrar como um novo usuário,
+**Para que** eu possa acessar os recursos e funcionalidades do sistema.
 
 <hr/>
 
@@ -36,9 +36,14 @@ Para que eu possa acessar os recursos e funcionalidades do sistema.
 
 ## Exceções
 
-1. ✅ Retorna erro **404** se a API não existir
-2. ✅ Retorna erro **412** se name, email, password ou confirmPassword não forem fornecidos pelo client
-3. ✅ Retorna erro **412** se o campo name for inválido
-4. ✅ Retorna erro **412** se o campo email for um e-mail inválido
-5. ✅ Retorna erro **412** se o campo password for inválida
-6. ✅ Retorna erro **412** se encontrar um usuário com o email fornecido
+1. ✅ Retorna erro **404** se a API não existir.
+
+2. ✅ Retorna erro **412** se name, email, password ou confirmPassword não forem fornecidos pelo client.
+
+3. ✅ Retorna erro **412** se o campo name for inválido.
+
+4. ✅ Retorna erro **412** se o campo email for um e-mail inválido.
+
+5. ✅ Retorna erro **412** se o campo password for inválida.
+
+6. ✅ Retorna erro **412** se encontrar um usuário com o email fornecido.

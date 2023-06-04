@@ -12,7 +12,8 @@
         "test:down": "docker-compose -f docker-compose.test.yml down",
         "test:prisma:push": "dotenv -e .env.test -- prisma db push",
         "prepare": "husky install",
-        "lint": "prettier --check ./src"
+        "lint": "prettier --check ./src",
+        "format": "prettier --write ."
     },
     "repository": {
         "type": "git",

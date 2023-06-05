@@ -22,9 +22,9 @@ Clean App Model é um projeto incial usando **Arquitetura Limpa** com funcionali
 - npm
 - Docker (opcional)
 
-## Executando o projeto
+## Executando o projeto em modo desenvolvimento
 
-Execute o seguinte comando em seu ambiente local:
+1. Execute o seguinte comando em seu ambiente local:
 
 ```
 git clone https://github.com/HitaloNasc/clean-app-model-backend.git
@@ -32,20 +32,45 @@ cd clean-app-model-backend
 npm install
 ```
 
-Em seguida, você deve subir o banco de dados (requer docker):
+2. Em seguida, você deve subir o banco de dados de desenvolvimento (requer docker):
 
 ```
 npm run db:dev:up
+```
+
+3. Alimente o banco de desenvolvimento com as migrations
+
+```
 npm run db:dev:push
 ```
 
-Finalmente, para executar localmente no modo desenvolvimento:
+4. Execute o projeto localmente no modo desenvolvimento:
 
 ```
 npm run start:dev
 ```
 
 Por padrão o projeto rodará na porta 3333, mas isto pode ser alterado nas variáveis de ambiente para desenvolvimento em `/.env.development`.
+
+## Executando o projeto em modo teste
+
+1. Você deve subir o banco de dados de teste (requer docker):
+
+```
+npm run db:test:up
+```
+
+2. Alimente o banco de teste com as migrations
+
+```
+npm run db:test:push
+```
+
+3. Execute o script de teste:
+
+```
+npm run test
+```
 
 ## Comandos
 
@@ -60,7 +85,7 @@ Todos os comandos são executados a partir da raiz do projeto, a partir de um te
 | `npm run db:test:up`        | Instancia um container com um banco de dados mysql para consumo no modo teste                |
 | `npm run db:test:down       | Para container com um banco de dados mysql no modo teste                                     |
 | `npm run test`              | Executa todos os testes                                                                      |
-| `npm run test:unit`         | Executa apenas os testes unitários                                                           |
-| `npm run test:integration`  | Executa apenas os testes de integração                                                       |
+| `npm run test:unit`         | Executa apenas os testes unitários no modo watch                                             |
+| `npm run test:integration`  | Executa apenas os testes de integração no modo watch                                         |
 | `npm run lint`              | Executa o ESLint e reporta os problemas no código                                            |
 | `npm run format`            | Executa o Prettier formata os arquivos com problema de identação                             |

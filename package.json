@@ -11,7 +11,7 @@
         "db:test:down": "docker-compose -f docker-compose.test.yml down",
         "db:dev:push": "dotenv -e .env.development -- prisma db push",
         "db:test:push": "dotenv -e .env.test -- prisma db push",
-        "test": "npm run test:up && dotenv -e .env.test -- jest --passWithNoTests --silent --noStackTrace --runInBand",
+        "test": "npm run db:test:up && dotenv -e .env.test -- jest --passWithNoTests --silent --noStackTrace --runInBand",
         "test:unit": "npm test -- --testMatch '**/*.spec.ts' --watchAll",
         "test:integration": "npm test -- --testMatch '**/*.test.ts' --watchAll",
         "prepare": "husky install",

@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+    clean_app_db:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=clean-app-model
+        volumes:
+            - clean_app_db:/var/lib/mysql
+        ports:
+            - 3306:3306
+volumes:
+    clean_app_db:

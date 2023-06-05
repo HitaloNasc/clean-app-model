@@ -1,4 +1,4 @@
-import { RegisterUserController } from '@/presentation/controllers';
+import { RegisterUserController } from '@/presentation/controllers/user';
 import { RegisterUser } from '@/usecases/register-user';
 import { PrismaUserRepository } from '@/external/repositories/prisma';
 

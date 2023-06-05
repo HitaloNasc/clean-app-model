@@ -23,7 +23,7 @@ export class RegisterUserController implements IController {
 
         obrigatory.forEach(key => {
             if (!body[key]) {
-                throw Errors.PRECONDITION_FAILED([{ key: 'user_controller_obrigatory_param_is_missing', data: { key } }]);
+                throw Errors.PRECONDITION_FAILED([{ key: 'obrigatory_param_is_missing', data: { key } }]);
             }
         });
 

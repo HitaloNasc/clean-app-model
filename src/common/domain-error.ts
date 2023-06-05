@@ -14,10 +14,15 @@ export class HttpException extends Error {
     }
 }
 
+type IErr = {
+    key: string;
+    data?: object;
+};
+
 export const Errors = {
-    UNAUTHORIZED: (err: object[]) => new HttpException(401, err, 'unauthorized'),
+    UNAUTHORIZED: (err: IErr[]) => new HttpException(401, err, 'unauthorized'),
     FORBIDDEN: () => new HttpException(403, null, 'forbidden'),
-    NOT_FOUND: (err: object[]) => new HttpException(404, err, 'not_found'),
-    PRECONDITION_FAILED: (err: object[]) => new HttpException(412, err, 'precondition_failed'),
+    NOT_FOUND: (err: IErr[]) => new HttpException(404, err, 'not_found'),
+    PRECONDITION_FAILED: (err: IErr[]) => new HttpException(412, err, 'precondition_failed'),
     INTERNAL_SERVER_ERROR: () => new HttpException(500, null, 'internal_server_error'),
 };

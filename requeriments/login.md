@@ -14,17 +14,19 @@
 
 2. O sistema deve verificar se o email fornecido está registrado no banco de dados.
 
-3. O sistema deve comparar a senha fornecida com a senha armazenada no banco de dados para o email correspondente.
+3. O sitema deve verificar se o usuário está ativo.
 
-4. Se o email não estiver registrado, o sistema deve exibir uma mensagem de erro informando ao usuário que o email não está cadastrado.
+4. O sistema deve comparar a senha fornecida com a senha armazenada no banco de dados para o email correspondente.
 
-5. Se a senha fornecida não corresponder à senha registrada para o email fornecido, o sistema deve exibir uma mensagem de erro informando ao usuário que a senha está incorreta.
+5. Se o email não estiver registrado, o sistema deve exibir uma mensagem de erro informando ao usuário que o email não está cadastrado.
 
-6. Se o email e a senha estiverem corretos, o sistema deve autenticar o usuário e redirecioná-lo para a página principal do sistema.
+6. Se a senha fornecida não corresponder à senha registrada para o email fornecido, o sistema deve exibir uma mensagem de erro informando ao usuário que a senha está incorreta.
 
-7. Durante o processo de login, o sistema deve garantir a segurança das informações transmitidas, por meio de criptografia ou outros métodos adequados.
+8. Se o email e a senha estiverem corretos, o sistema deve autenticar o usuário e redirecioná-lo para a página principal do sistema.
 
-8. O sistema deve fornecer uma opção para o usuário redefinir a senha em caso de esquecimento ou perda da mesma.
+9. Durante o processo de login, o sistema deve garantir a segurança das informações transmitidas, por meio de criptografia ou outros métodos adequados.
+
+10. O sistema deve fornecer uma opção para o usuário redefinir a senha em caso de esquecimento ou perda da mesma.
 
 ### Notas:
 

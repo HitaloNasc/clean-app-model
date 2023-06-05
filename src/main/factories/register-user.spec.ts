@@ -1,5 +1,5 @@
 import { makeRegisterUserController } from './register-user';
-import { RegisterUserController } from '@/presentation/controllers';
+import { RegisterUserController } from '@/presentation/controllers/user';
 
 describe('Register User factory', () => {
     it('should return an instance of RegisterUserController', () => {
